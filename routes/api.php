@@ -18,6 +18,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('products',[ProductController::class,'index']);
     Route::get('product/sliders',[ProductController::class,'productSliders']);
 
+    // the following api need authentication
     Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::get('wishlist',[UserProductController::class,'userWishList']);
         Route::post('add/wishlist',[UserProductController::class,'addWishList']);
