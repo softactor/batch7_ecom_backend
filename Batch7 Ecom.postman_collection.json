@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "4e925b29-401f-4f95-8721-dcbc854ba5ed",
+		"name": "Batch7 Ecom",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10628658"
+	},
+	"item": [
+		{
+			"name": "Brands",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://ecomb7.test/api/v1/brands",
+					"protocol": "http",
+					"host": [
+						"ecomb7",
+						"test"
+					],
+					"path": [
+						"api",
+						"v1",
+						"brands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://ecomb7.test/api/v1/categories",
+					"protocol": "http",
+					"host": [
+						"ecomb7",
+						"test"
+					],
+					"path": [
+						"api",
+						"v1",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Products",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://ecomb7.test/api/v1/products",
+					"protocol": "http",
+					"host": [
+						"ecomb7",
+						"test"
+					],
+					"path": [
+						"api",
+						"v1",
+						"products"
+					],
+					"query": [
+						{
+							"key": "brand_id",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "category_id",
+							"value": "6",
+							"disabled": true
+						},
+						{
+							"key": "remarks",
+							"value": "trending",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
