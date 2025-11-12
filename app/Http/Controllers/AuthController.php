@@ -15,15 +15,18 @@ class AuthController extends Controller
     {
         $user = User::where('email',$request->email)->first();
         $otp = rand(100000,999999);
-        if(!$user)
-            User::create([
+        if(!$user){
+            $user =User::create([
                 'email' => $request->email,
                 'otp' => $otp,
             ]);
-        else
+            $user->assignRole('customer');
+        }else{
             $user->update([
                 'otp' => $otp,
             ]);
+        }
+            
 
 
         Mail::raw('Your OTP is '.$otp, function($message) use($request){
