@@ -5,6 +5,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,8 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('products',[ProductController::class,'index']);
     Route::get('product/sliders',[ProductController::class,'productSliders']);
 
+
+
     // the following api need authentication
     Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::get('wishlist',[UserProductController::class,'userWishList']);
@@ -29,6 +32,13 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('remove/cart',[ShoppingCartController::class,'removeToCart']);
         Route::get('clear/cart',[ShoppingCartController::class,'flashCart']);
     });
+
+    Route::group(['middleware' => ['auth:sanctum']], function () {
+        Route::apiResource('users', UserController::class);
+    });
+
+
+
 
     Route::get('success',function(){
         // order payment success update
