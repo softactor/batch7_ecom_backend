@@ -31,6 +31,8 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('add/cart',[ShoppingCartController::class,'addToCart']);
         Route::post('remove/cart',[ShoppingCartController::class,'removeToCart']);
         Route::get('clear/cart',[ShoppingCartController::class,'flashCart']);
+
+        Route::get('/me', [UserController::class, 'me']);
     });
 
     Route::group(['middleware' => ['auth:sanctum']], function () {

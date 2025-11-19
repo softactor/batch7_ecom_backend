@@ -6,6 +6,7 @@ use App\Http\Requests\CreateRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -22,14 +23,21 @@ class UserController extends Controller
         }
 
         return $this->success([
-            'user' => [
-                'id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email,
-                'password' => $request->password,
-                'role'    => $user->getRoleNames()->first(),
-                'permissions'    => $user->getAllPermissions()->pluck('name'),
-            ]
+            'user' => $this->formatUser($user)
+        ]);
+    }
+
+    public function me(Request $request)
+    {
+        $user = Auth::user();
+
+        if(!$user){
+            return response()->json([
+                'message' => 'Unauthenticated'
+            ]);
+        }
+        return response()->json([
+            'user' => $this->formatUser($user)
         ]);
     }
 

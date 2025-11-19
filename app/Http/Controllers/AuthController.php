@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
+    
     public function loginOtpSend(LoginOtpSendRequest $request): JsonResponse
     {
         $user = User::where('email',$request->email)->first();
@@ -47,8 +48,11 @@ class AuthController extends Controller
 
         $accessToken = $user->createToken('authToken')->plainTextToken;
 
+        
+
         return $this->success([
             'access_token' => $accessToken,
+            'user' => $this->formatUser($user)
         ],'Login Success');
     }
 }
