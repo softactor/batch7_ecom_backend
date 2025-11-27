@@ -42,18 +42,36 @@ class UserController extends Controller
     }
 
     public function index() {
-        
+        $users = User::latest()->get();
+
+        return response()->json([
+            'data' => $users
+        ]);
     }
     
     public function show($id) {
         
     }
     
-    public function update(Request $request) {
-        
+    public function update(Request $request, User $user) {
+        $user->update([
+            'name' => $request->name ?? $user->name,
+            'email' => $request->email ?? $user->email,
+            
+            'password' => $request->filled('password') ? $request->password : $user->password,
+        ]);
+
+        return $this->success([
+            'user' => $this->formatUser($user)
+        ]);
+
     }
 
-    public function delete($id) {
-        
+    public function destroy(User $user) {
+        $user->delete();
+
+        return $this->success([
+            'message' => 'Deleted successfully'
+        ]);
     }
 }
