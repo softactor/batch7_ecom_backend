@@ -8,13 +8,20 @@ use Illuminate\Support\Facades\Auth;
 
 class BroadcastMessageController extends Controller
 {
-    public function bradcastMessage(Request $request)
+    public function broadcastMessage(Request $request)
     {
 
         $message = $request->message;
         $userName = 'Tanveer';
 
+        
+
 
         event(new MessageActivity($message, $userName));
+
+        return response()->json([
+            'status' => 'ok',
+            'message' => 'MessageActivity event created'
+        ]);
     }
 }

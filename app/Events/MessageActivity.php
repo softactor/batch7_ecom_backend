@@ -43,5 +43,16 @@ class MessageActivity implements ShouldBroadcast
         return 'message-activity';
     }
 
+    public function broadcastWith()
+    {
+        return [
+
+              'message' => $this->message,  
+              'user' => $this->userName,
+              'date' => date('Y-m-d H:i:s')  
+
+        ];
+    }
+
 
 }

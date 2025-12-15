@@ -41,7 +41,7 @@ Route::group(['prefix' => 'v1'], function () {
     });
 
 
-    Route::post('/broadcast/send/message', [BroadcastMessageController::class, 'bradcastMessage']);
+    Route::post('/broadcast/send/message', [BroadcastMessageController::class, 'broadcastMessage']);
 
 
 
