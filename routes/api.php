@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\BroadcastMessageController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShoppingCartController;
@@ -38,6 +39,9 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::apiResource('users', UserController::class);
     });
+
+
+    Route::post('/broadcast/send/message', [BroadcastMessageController::class, 'bradcastMessage']);
 
 
 
